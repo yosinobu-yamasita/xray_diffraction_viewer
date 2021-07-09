@@ -1,15 +1,7 @@
 # coding: utf-8
-
-import seaborn as sns
-import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
-# 日本語出力対応
-plt.rcParams['font.family'] = 'IPAexGothic'
 from tkinter import filedialog
 import os
 import re
-
 # ファイル指定
 typ = [('CSVファイル','*.csv')] 
 # dir = 'C:\\'
@@ -19,6 +11,13 @@ csv_name = fle
 print("読み込みファイル:",fle)
 実験number =re.findall(r"\d+", os.path.splitext(os.path.basename(fle))[0])[0]
 # csv_name ="YYNo"+実験number+"_4pd.csv"
+
+import seaborn as sns
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
+# 日本語出力対応
+plt.rcParams['font.family'] = 'IPAexGothic'
 
 #CSVファイルをUTF-8形式で読み込む
 df_score = pd.read_csv(csv_name,encoding = 'UTF8',engine='python')
@@ -47,18 +46,17 @@ plt.legend()
 
 # 表示の調整
 plt_mode = "nomal"
+pdf_name= "YYNo"+実験number+"_X線回折.pdf"
 if df_score["cps移動平均"].max()>10000:
     ax.set_yscale('log')
     plt_mode ="log"
+    pdf_name= "YYNo"+実験number+"_X線回折_log.pdf"
 
 # figureをセーブする
-if plt_mode=="log":
-    pp = PdfPages("YYNo"+実験number+"X線回折_log.pdf")
-else:
-    pp = PdfPages("YYNo"+実験number+"X線回折.pdf")
+pp = PdfPages(os.path.dirname(fle)+"/"+pdf_name)
 pp.savefig()
 pp.close()
-print("グラフPDF保存:",YYNo"+実験number+"X線回折")
+print("グラフPDF保存:",pdf_name)
 
 # 終了処理
 plt.show()
