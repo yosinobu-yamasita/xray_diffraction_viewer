@@ -7,6 +7,8 @@ from matplotlib.backends.backend_pdf import PdfPages
 # 日本語出力対応
 plt.rcParams['font.family'] = 'IPAexGothic'
 from tkinter import filedialog
+import os
+import re
 
 # ファイル指定
 typ = [('CSVファイル','*.csv')] 
@@ -15,8 +17,7 @@ dir = 'C:\\Users\\17T2166H\\OneDrive\\信州大学\\四年\\研究'
 fle = filedialog.askopenfilename(filetypes = typ, initialdir = dir) 
 csv_name = fle
 print("読み込みファイル:",fle)
-
-実験number ="006"
+実験number =re.findall(r"\d+", os.path.splitext(os.path.basename(fle))[0])[0]
 # csv_name ="YYNo"+実験number+"_4pd.csv"
 
 #CSVファイルをUTF-8形式で読み込む
@@ -57,7 +58,7 @@ else:
     pp = PdfPages("YYNo"+実験number+"X線回折.pdf")
 pp.savefig()
 pp.close()
-print("グラフPDF保存")
+print("グラフPDF保存:",YYNo"+実験number+"X線回折")
 
 # 終了処理
 plt.show()
