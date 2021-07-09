@@ -38,7 +38,7 @@ y_rolling=df_score["cps移動平均"]
 fig = plt.figure()
 ax = fig.add_subplot(111) 
 ax.scatter(x, y, label="測定値")
-ax.plot(x, y_rolling,color="r", label="移動平均")
+ax.plot(x, y_rolling,color="r", label=str(average_num)+"データ移動平均")
 ax.set_title("YYNo"+実験number)
 ax.set_xlabel("2θ")
 ax.set_ylabel("cps")
