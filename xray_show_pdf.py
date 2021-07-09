@@ -8,6 +8,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 plt.rcParams['font.family'] = 'IPAexGothic'
 from tkinter import filedialog
 
+# ファイル指定
 typ = [('CSVファイル','*.csv')] 
 # dir = 'C:\\'
 dir = 'C:\\Users\\17T2166H\\OneDrive\\信州大学\\四年\\研究'
@@ -15,8 +16,6 @@ fle = filedialog.askopenfilename(filetypes = typ, initialdir = dir)
 csv_name = fle
 print("読み込みファイル:",fle)
 
-
-# ファイル指定
 実験number ="006"
 # csv_name ="YYNo"+実験number+"_4pd.csv"
 
