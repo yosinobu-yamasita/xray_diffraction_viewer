@@ -11,6 +11,7 @@ config_ini_path = 'config.ini'
 if not os.path.exists(config_ini_path):
     raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), config_ini_path)
 config_ini.read(config_ini_path, encoding='utf-8')
+
 read_default = config_ini['YAMASITA']
 dir = read_default.get('Dir')
 average_num= read_default.getint('MoveAve')
