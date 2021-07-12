@@ -2,17 +2,27 @@
 from tkinter import filedialog
 import os
 import re
+import configparser
+import errno
+
+# configparserの宣言とiniファイルの読み込み
+config_ini = configparser.ConfigParser()
+config_ini_path = 'config.ini'
+if not os.path.exists(config_ini_path):
+    raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), config_ini_path)
+config_ini.read(config_ini_path, encoding='utf-8')
+read_default = config_ini['YAMASITA']
+dir = read_default.get('Dir')
+average_num= read_default.getint('MoveAve')
+
 # ファイル指定
 typ = [('CSVファイル','*.csv')] 
-# dir = 'C:\\'
-dir = 'C:\\Users\\17T2166H\\OneDrive\\信州大学\\四年\\研究'
 fle = filedialog.askopenfilename(filetypes = typ, initialdir = dir) 
 csv_name = fle
 print("読み込みファイル:",fle)
 実験number =re.findall(r"\d+", os.path.splitext(os.path.basename(fle))[0])[0]
 # csv_name ="YYNo"+実験number+"_4pd.csv"
 
-import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
@@ -25,7 +35,6 @@ df_score = pd.read_csv(csv_name,encoding = 'UTF8',engine='python')
 # df_score[0:10]
 
 # 移動平均を作成
-average_num=5
 df_score["cps移動平均"]=df_score["cps"].rolling(average_num).mean().round(1)
 # df_score[0:10]
 

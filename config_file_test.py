@@ -6,7 +6,6 @@ import errno
 
 
 # configparserの宣言とiniファイルの読み込み
-
 config_ini = configparser.ConfigParser()
 config_ini_path = 'config.ini'
 
