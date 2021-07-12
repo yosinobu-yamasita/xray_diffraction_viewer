@@ -57,7 +57,7 @@ plt.legend()
 # 表示の調整
 plt_mode = "nomal"
 pdf_name= "YYNo"+実験number+"_X線回折.pdf"
-if df_score["cps移動平均"].max()>10000:
+if df_score["cps移動平均"].max()>300:
     ax.set_yscale('log')
     plt_mode ="log"
     pdf_name= "YYNo"+実験number+"_X線回折_log.pdf"
