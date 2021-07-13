@@ -18,7 +18,8 @@ average_num= read_default.getint('MoveAve')
 log_min_limit= read_default.getint('LogLimit')
 
 # ファイル指定
-typ = [('CSVファイル','*.csv')] 
+# typ = [('CSVファイル','*.csv')] 
+typ = [('DATファイル','*dat')] 
 fle = filedialog.askopenfilename(filetypes = typ, initialdir = dir) 
 csv_name = fle
 print("読み込みファイル:",fle)
@@ -32,7 +33,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 plt.rcParams['font.family'] = 'IPAexGothic'
 
 #CSVファイルをUTF-8形式で読み込む
-df_score = pd.read_csv(csv_name,encoding = 'UTF8',engine='python')
+df_score = pd.read_csv(csv_name, encoding = 'UTF8', engine='python', names=("2sita", "cps"), sep="   ")
 #dataを出力
 # df_score[0:10]
 
