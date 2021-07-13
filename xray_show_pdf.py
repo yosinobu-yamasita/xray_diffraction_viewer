@@ -54,6 +54,7 @@ ax.set_title("YYNo"+実験number)
 ax.set_xlabel("2θ")
 ax.set_ylabel("cps")
 plt.legend()
+plt.grid()
 
 # 表示の調整
 plt_mode = "nomal"
