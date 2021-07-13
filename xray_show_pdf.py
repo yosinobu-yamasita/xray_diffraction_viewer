@@ -15,6 +15,7 @@ config_ini.read(config_ini_path, encoding='utf-8')
 read_default = config_ini['YAMASITA']
 dir = read_default.get('Dir')
 average_num= read_default.getint('MoveAve')
+log_min_limit= read_default.getint('LogLimit')
 
 # ファイル指定
 typ = [('CSVファイル','*.csv')] 
@@ -57,7 +58,7 @@ plt.legend()
 # 表示の調整
 plt_mode = "nomal"
 pdf_name= "YYNo"+実験number+"_X線回折.pdf"
-if df_score["cps移動平均"].max()>300:
+if df_score["cps移動平均"].max()>log_min_limit:
     ax.set_yscale('log')
     plt_mode ="log"
     pdf_name= "YYNo"+実験number+"_X線回折_log.pdf"
