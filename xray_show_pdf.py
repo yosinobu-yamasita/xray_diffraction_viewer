@@ -23,7 +23,8 @@ typ = [('DATファイル','*dat')]
 fle = filedialog.askopenfilename(filetypes = typ, initialdir = dir) 
 csv_name = fle
 print("読み込みファイル:",fle)
-実験number =re.findall(r"\d+", os.path.splitext(os.path.basename(fle))[0])[0]
+# 実験number =re.findall(r"\d+", os.path.splitext(os.path.basename(fle))[0])[0]
+file_name =(os.path.splitext(os.path.basename(fle))[0])
 # csv_name ="YYNo"+実験number+"_4pd.csv"
 
 import pandas as pd
@@ -51,7 +52,7 @@ fig = plt.figure()
 ax = fig.add_subplot(111) 
 ax.scatter(x, y, label="測定値")
 ax.plot(x, y_rolling,color="r", label=str(average_num)+"データ移動平均")
-ax.set_title("YYNo"+実験number)
+ax.set_title(file_name)
 ax.set_xlabel("2θ")
 ax.set_ylabel("cps")
 plt.legend()
@@ -59,11 +60,11 @@ plt.grid()
 
 # 表示の調整
 plt_mode = "nomal"
-pdf_name= "YYNo"+実験number+"_X線回折.pdf"
+pdf_name= file_name+"_X線回折.pdf"
 if df_score["cps移動平均"].max()>log_min_limit:
     ax.set_yscale('log')
     plt_mode ="log"
-    pdf_name= "YYNo"+実験number+"_X線回折_log.pdf"
+    pdf_name= file_name+"_X線回折_log.pdf"
 
 # figureをセーブする
 pp = PdfPages(os.path.dirname(fle)+"/"+pdf_name)
