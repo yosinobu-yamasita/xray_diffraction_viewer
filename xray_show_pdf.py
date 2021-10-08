@@ -15,6 +15,12 @@ config_ini.read(config_ini_path, encoding='utf-8')
 read_default = config_ini['YAMASITA']
 dir = read_default.get('Dir')
 average_num= read_default.getint('MoveAve')
+plt_Y_mode= read_default.get('PltMode')
+if plt_Y_mode!="all":
+    # plt_y_limit = read_default.getint("PltYLimit")
+    plt_y_limit_xmax = read_default.getint("PltYLimit_Xmax")
+    plt_y_limit_xmin = read_default.getint("PltYLimit_Xmin")
+    
 log_min_limit= read_default.getint('LogLimit')
 
 # ファイル指定
@@ -65,6 +71,12 @@ if df_score["cps移動平均"].max()>log_min_limit:
     ax.set_yscale('log')
     plt_mode ="log"
     pdf_name= file_name+"_X線回折_log.pdf"
+
+if (plt_Y_mode !="all")and("plt_y_limit_xmax" in locals()):
+    plt_y_limit_xmax_num = min(int((plt_y_limit_xmax-df_score["2sita"][0])/0.02),len(df_score["2sita"]))
+    plt_y_limit_xmin_num = max(int((plt_y_limit_xmin-df_score["2sita"][0])/0.02),0)
+    ax.set_ylim(0,df_score["cps"][plt_y_limit_xmin:plt_y_limit_xmax_num].max()*1.1)
+
 
 # figureをセーブする
 pp = PdfPages(os.path.dirname(fle)+"/"+pdf_name)
