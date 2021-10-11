@@ -37,7 +37,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 # 日本語出力対応
-plt.rcParams['font.family'] = 'IPAexGothic'
+plt.rcParams['font.family'] = 'MS Gothic'
 
 #CSVファイルをUTF-8形式で読み込む
 df_score = pd.read_csv(csv_name, encoding = 'UTF8', engine='python', names=("2sita", "cps"), sep="   ")
