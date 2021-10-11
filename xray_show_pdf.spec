@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(['xray_show_pdf.py'],
-             pathex=['C:\\Users\\subYamasita\\git\\xray_diffraction_viewer'],
+             pathex=['C:\\Users\\17T2166H\\git\\xray\\xray_diffraction_viewer'],
              binaries=[],
              datas=[],
              hiddenimports=[],
