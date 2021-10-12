@@ -54,7 +54,8 @@ y=df_score["cps"]
 y_rolling=df_score["cps移動平均"]
 
 # グラフの作成、表示、保存（PDF）
-fig = plt.figure()
+# 6.4、4.8
+fig = plt.figure(figsize=(12,8))
 ax = fig.add_subplot(111) 
 ax.scatter(x, y, label="測定値")
 ax.plot(x, y_rolling,color="r", label=str(average_num)+"データ移動平均")
@@ -63,6 +64,7 @@ ax.set_xlabel("2θ")
 ax.set_ylabel("cps")
 plt.legend()
 plt.grid()
+
 
 # 表示の調整
 plt_mode = "nomal"
