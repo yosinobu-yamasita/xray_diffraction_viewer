@@ -78,7 +78,7 @@ plt.grid()
 # 表示の調整
 plt_mode = "nomal"
 pdf_name= file_name+"_X線回折_diff.pdf"
-ax.set_xlim(20,30)
+# ax.set_xlim(20,30)
 if df_score["cps移動平均"].max()>log_min_limit:
     ax.set_yscale('log')
     plt_mode ="log"
@@ -87,7 +87,7 @@ if df_score["cps移動平均"].max()>log_min_limit:
 if (plt_Y_mode !="all")and("plt_y_limit_xmax" in locals()):
     plt_y_limit_xmax_num = min(int((plt_y_limit_xmax-df_score["2sita"][0])/0.02),len(df_score["2sita"]))
     plt_y_limit_xmin_num = max(int((plt_y_limit_xmin-df_score["2sita"][0])/0.02),0)
-    ax.set_ylim(0,df_score["cps"][plt_y_limit_xmin:plt_y_limit_xmax_num].max()*1.1)
+    ax.set_ylim(-50,df_score["cps"][plt_y_limit_xmin:plt_y_limit_xmax_num].max()*1.1)
 
 
 # figureをセーブする
