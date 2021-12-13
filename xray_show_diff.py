@@ -22,10 +22,11 @@ if plt_Y_mode!="all":
     plt_y_limit_xmin = read_default.getint("PltYLimit_Xmin")
     
 log_min_limit= read_default.getint('LogLimit')
+base_fle = read_default.get("BaseFile")
 
 # ベースファイル指定
 typ = [('DATファイル','*dat')] 
-base_fle = filedialog.askopenfilename(filetypes = typ, initialdir = dir, title="base file") 
+# base_fle = filedialog.askopenfilename(filetypes = typ, initialdir = dir, title="base file") 
 base_csv_name = base_fle
 print("読み込みベースファイル:",base_fle)
 base_file_name =(os.path.splitext(os.path.basename(base_fle))[0])
@@ -78,7 +79,7 @@ plt.grid()
 # 表示の調整
 plt_mode = "nomal"
 pdf_name= file_name+"_X線回折_diff.pdf"
-# ax.set_xlim(20,30)
+ax.set_xlim(20,30)
 if df_score["cps移動平均"].max()>log_min_limit:
     ax.set_yscale('log')
     plt_mode ="log"
